@@ -13,6 +13,7 @@
 		E78A8E1421946AF20080A314 /* Stoic_Daily.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E78A8E1221946AF20080A314 /* Stoic_Daily.xcdatamodeld */; };
 		E78A8E1621946AF40080A314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E1521946AF40080A314 /* Assets.xcassets */; };
 		E78A8E1921946AF40080A314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E1721946AF40080A314 /* LaunchScreen.storyboard */; };
+		E78A8E212194711A0080A314 /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E202194711A0080A314 /* quotes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E78A8E1521946AF40080A314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E78A8E1821946AF40080A314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E78A8E1A21946AF40080A314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E78A8E202194711A0080A314 /* quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				E78A8E0B21946AF20080A314 /* AppDelegate.swift */,
+				E78A8E202194711A0080A314 /* quotes.json */,
 				E78A8E0D21946AF20080A314 /* ViewController.swift */,
 				E78A8E0F21946AF20080A314 /* Main.storyboard */,
 				E78A8E1521946AF40080A314 /* Assets.xcassets */,
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E78A8E212194711A0080A314 /* quotes.json in Resources */,
 				E78A8E1921946AF40080A314 /* LaunchScreen.storyboard in Resources */,
 				E78A8E1621946AF40080A314 /* Assets.xcassets in Resources */,
 				E78A8E1121946AF20080A314 /* Main.storyboard in Resources */,
