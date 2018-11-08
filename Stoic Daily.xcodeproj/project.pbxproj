@@ -44,6 +44,7 @@
 		E78A8DFF21946AF20080A314 = {
 			isa = PBXGroup;
 			children = (
+				E78A8E2221948D700080A314 /* README.md */,
 				E78A8E0A21946AF20080A314 /* Stoic Daily */,
 				E78A8E0921946AF20080A314 /* Products */,
 			);
@@ -68,7 +69,6 @@
 				E78A8E1721946AF40080A314 /* LaunchScreen.storyboard */,
 				E78A8E1A21946AF40080A314 /* Info.plist */,
 				E78A8E1221946AF20080A314 /* Stoic_Daily.xcdatamodeld */,
-				E78A8E2221948D700080A314 /* README.md */,
 			);
 			path = "Stoic Daily";
 			sourceTree = "<group>";
