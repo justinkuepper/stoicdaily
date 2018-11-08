@@ -14,6 +14,7 @@
 		E78A8E1621946AF40080A314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E1521946AF40080A314 /* Assets.xcassets */; };
 		E78A8E1921946AF40080A314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E1721946AF40080A314 /* LaunchScreen.storyboard */; };
 		E78A8E212194711A0080A314 /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E202194711A0080A314 /* quotes.json */; };
+		E78A8E2321948D700080A314 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E2221948D700080A314 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E78A8E1821946AF40080A314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E78A8E1A21946AF40080A314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E78A8E202194711A0080A314 /* quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
+		E78A8E2221948D700080A314 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E78A8E1721946AF40080A314 /* LaunchScreen.storyboard */,
 				E78A8E1A21946AF40080A314 /* Info.plist */,
 				E78A8E1221946AF20080A314 /* Stoic_Daily.xcdatamodeld */,
+				E78A8E2221948D700080A314 /* README.md */,
 			);
 			path = "Stoic Daily";
 			sourceTree = "<group>";
@@ -130,6 +133,7 @@
 			files = (
 				E78A8E212194711A0080A314 /* quotes.json in Resources */,
 				E78A8E1921946AF40080A314 /* LaunchScreen.storyboard in Resources */,
+				E78A8E2321948D700080A314 /* README.md in Resources */,
 				E78A8E1621946AF40080A314 /* Assets.xcassets in Resources */,
 				E78A8E1121946AF20080A314 /* Main.storyboard in Resources */,
 			);
