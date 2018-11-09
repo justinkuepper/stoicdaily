@@ -10,10 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var quoteLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(getDate())
-        print(getQuote(currentDate: "11/09"))
+        
+        // Set styling for the quote text.
+        let attString = NSMutableAttributedString(string: getQuote(currentDate: getDate()))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
+        quoteLabel.attributedText = attString
+        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 25)
+        
+        // Fade in the quote text.
+        quoteLabel.alpha = 0
+        quoteLabel.fadeIn()
     }
     
     struct Quote: Decodable {
@@ -46,3 +58,17 @@ class ViewController: UIViewController {
     }
 }
 
+// Extention to fade in and out text.
+extension UIView {
+    func fadeIn(duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.alpha = 1.0
+        }, completion: completion)
+    }
+    
+    func fadeOut(duration: TimeInterval = 1.0, delay: TimeInterval = 3.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.alpha = 0.0
+        }, completion: completion)
+    }
+}
