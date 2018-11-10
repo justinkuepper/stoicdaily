@@ -11,6 +11,15 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var quoteLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBAction func shareQuote(_ sender: Any) {
+        let quote = getQuote(currentDate: getDate())
+        let shareObject = [quote]
+        let activityVC = UIActivityViewController(activityItems: shareObject, applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = sender as? UIView
+        self.present(activityVC, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +31,9 @@ class ViewController: UIViewController {
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
         quoteLabel.attributedText = attString
         quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 25)
+        
+        // Set date string.
+        dateLabel.text = getDateString()
         
         // Fade in the quote text.
         quoteLabel.alpha = 0
@@ -39,6 +51,15 @@ class ViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd"
         let result = formatter.string(from: date)
+        return result
+    }
+    
+    // Retrieves and formats the current date string.
+    func getDateString() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d"
+        let result = formatter.string(from: date).uppercased()
         return result
     }
     
