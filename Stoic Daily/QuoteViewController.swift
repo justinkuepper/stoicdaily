@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  QuoteViewController.swift
 //  Stoic Daily
 //
 //  Created by Justin Kuepper on 11/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class QuoteViewController: UIViewController {
 
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -30,7 +30,13 @@ class ViewController: UIViewController {
         paragraphStyle.lineSpacing = 10
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
         quoteLabel.attributedText = attString
-        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 25)
+        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 20)
+        
+        // Detect tap to show details.
+        let tapAction = UITapGestureRecognizer()
+        quoteLabel.isUserInteractionEnabled = true
+        quoteLabel.addGestureRecognizer(tapAction)
+        tapAction.addTarget(self, action: #selector(actionTapped(_:)))
         
         // Set date string.
         dateLabel.text = getDateString()
@@ -43,6 +49,7 @@ class ViewController: UIViewController {
     struct Quote: Decodable {
         var date: String
         var quote: String
+        var detail: String
     }
     
     // Retrieves and formats the current date.
@@ -76,6 +83,29 @@ class ViewController: UIViewController {
             print(error)
             return ""
         }
+    }
+    
+    // Takes a string date and returns a detail string.
+    func getDetails(currentDate: String) -> String {
+        do {
+            let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
+            let decoder = JSONDecoder()
+            let data = try Data(contentsOf: db)
+            let quotes = try decoder.decode([Quote].self, from: data)
+            let quote = quotes.filter{ $0.date == currentDate }
+            return quote[0].detail
+        } catch {
+            print(error)
+            return ""
+        }
+    }
+    
+    // Handle the tap to show detail view.
+    @objc func actionTapped(_ sender: UITapGestureRecognizer) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailView") as! DetailViewController
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.quoteDetails = getDetails(currentDate: getDate())
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

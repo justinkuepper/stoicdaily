@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--QuoteViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Stoic_Daily" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="QuoteViewController" id="BYZ-38-t0r" customClass="QuoteViewController" customModule="Stoic_Daily" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,15 +40,26 @@
                                     <constraint firstAttribute="trailing" secondItem="K9C-zC-hB5" secondAttribute="trailing" constant="10" id="wEn-nn-JfX"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e6-2m-2nV">
-                                <rect key="frame" x="16" y="323.5" width="343" height="20"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVi-EZ-OcA" userLabel="Quote">
+                                <rect key="frame" x="15" y="90" width="345" height="507"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e6-2m-2nV">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="507"/>
+                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="b92-m8-cxa"/>
+                                    <constraint firstItem="4e6-2m-2nV" firstAttribute="leading" secondItem="uVi-EZ-OcA" secondAttribute="leading" id="1tD-Dn-PXE"/>
+                                    <constraint firstItem="4e6-2m-2nV" firstAttribute="top" secondItem="uVi-EZ-OcA" secondAttribute="top" id="3Do-gL-96l"/>
+                                    <constraint firstItem="4e6-2m-2nV" firstAttribute="centerX" secondItem="uVi-EZ-OcA" secondAttribute="centerX" id="JiB-8L-jWi"/>
+                                    <constraint firstItem="4e6-2m-2nV" firstAttribute="centerY" secondItem="uVi-EZ-OcA" secondAttribute="centerY" id="PIr-NX-slZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="4e6-2m-2nV" secondAttribute="trailing" id="leL-be-Bwj"/>
+                                    <constraint firstAttribute="bottom" secondItem="4e6-2m-2nV" secondAttribute="bottom" id="zQa-cE-i4W"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-3X-bc8" userLabel="Footer">
                                 <rect key="frame" x="16" y="597" width="343" height="50"/>
                                 <subviews>
@@ -78,14 +89,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4e6-2m-2nV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0B7-8a-DC8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BTl-3X-bc8" secondAttribute="trailing" constant="16" id="5pj-rr-q8d"/>
+                            <constraint firstItem="uVi-EZ-OcA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Dj1-gw-eA5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="G4p-zf-7xK" secondAttribute="trailing" constant="16" id="QXg-Cq-WTe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BTl-3X-bc8" secondAttribute="bottom" constant="20" id="b5w-g8-6D2"/>
+                            <constraint firstItem="uVi-EZ-OcA" firstAttribute="top" secondItem="G4p-zf-7xK" secondAttribute="bottom" id="kFR-mB-bAU"/>
                             <constraint firstItem="G4p-zf-7xK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kWf-QV-x6q"/>
-                            <constraint firstItem="4e6-2m-2nV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rCa-EI-pWX"/>
+                            <constraint firstItem="BTl-3X-bc8" firstAttribute="top" secondItem="uVi-EZ-OcA" secondAttribute="bottom" id="ngN-8v-CbZ"/>
                             <constraint firstItem="BTl-3X-bc8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rDP-Fy-apS"/>
                             <constraint firstItem="G4p-zf-7xK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="tUM-lt-2tU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uVi-EZ-OcA" secondAttribute="trailing" constant="15" id="xTP-Xo-098"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -97,6 +110,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="114.69265367316342"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="UTn-qF-TKN">
+            <objects>
+                <viewController storyboardIdentifier="detailView" id="Ehf-g8-Dly" customClass="DetailViewController" customModule="Stoic_Daily" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Kr-F2-Znu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFa-9J-KjX">
+                                <rect key="frame" x="16" y="35" width="343" height="617"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OFa-9J-KjX" firstAttribute="leading" secondItem="6z3-Gx-0a6" secondAttribute="leading" constant="16" id="Pco-8b-8Y1"/>
+                            <constraint firstItem="6z3-Gx-0a6" firstAttribute="bottom" secondItem="OFa-9J-KjX" secondAttribute="bottom" constant="15" id="Qq3-J6-hed"/>
+                            <constraint firstItem="6z3-Gx-0a6" firstAttribute="trailing" secondItem="OFa-9J-KjX" secondAttribute="trailing" constant="16" id="c0s-SB-7vx"/>
+                            <constraint firstItem="OFa-9J-KjX" firstAttribute="top" secondItem="6z3-Gx-0a6" secondAttribute="top" constant="15" id="dTu-n4-A22"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6z3-Gx-0a6"/>
+                    </view>
+                    <connections>
+                        <outlet property="quoteDetailsLabel" destination="OFa-9J-KjX" id="2jo-He-QRu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rag-e8-QWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="845.60000000000002" y="113.79310344827587"/>
         </scene>
     </scenes>
 </document>

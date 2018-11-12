@@ -8,19 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		E78A8E0C21946AF20080A314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A8E0B21946AF20080A314 /* AppDelegate.swift */; };
-		E78A8E0E21946AF20080A314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A8E0D21946AF20080A314 /* ViewController.swift */; };
+		E78A8E0E21946AF20080A314 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A8E0D21946AF20080A314 /* QuoteViewController.swift */; };
 		E78A8E1121946AF20080A314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E0F21946AF20080A314 /* Main.storyboard */; };
 		E78A8E1421946AF20080A314 /* Stoic_Daily.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E78A8E1221946AF20080A314 /* Stoic_Daily.xcdatamodeld */; };
 		E78A8E1621946AF40080A314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E1521946AF40080A314 /* Assets.xcassets */; };
 		E78A8E1921946AF40080A314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E1721946AF40080A314 /* LaunchScreen.storyboard */; };
 		E78A8E212194711A0080A314 /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E202194711A0080A314 /* quotes.json */; };
 		E78A8E2321948D700080A314 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E78A8E2221948D700080A314 /* README.md */; };
+		E7F030E92199DA0B00141992 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F030E82199DA0B00141992 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E78A8E0821946AF20080A314 /* Stoic Daily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stoic Daily.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78A8E0B21946AF20080A314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E78A8E0D21946AF20080A314 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E78A8E0D21946AF20080A314 /* QuoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
 		E78A8E1021946AF20080A314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E78A8E1321946AF20080A314 /* Stoic_Daily.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stoic_Daily.xcdatamodel; sourceTree = "<group>"; };
 		E78A8E1521946AF40080A314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		E78A8E1A21946AF40080A314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E78A8E202194711A0080A314 /* quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
 		E78A8E2221948D700080A314 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E7F030E82199DA0B00141992 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +65,13 @@
 			children = (
 				E78A8E0B21946AF20080A314 /* AppDelegate.swift */,
 				E78A8E202194711A0080A314 /* quotes.json */,
-				E78A8E0D21946AF20080A314 /* ViewController.swift */,
+				E78A8E0D21946AF20080A314 /* QuoteViewController.swift */,
 				E78A8E0F21946AF20080A314 /* Main.storyboard */,
 				E78A8E1521946AF40080A314 /* Assets.xcassets */,
 				E78A8E1721946AF40080A314 /* LaunchScreen.storyboard */,
 				E78A8E1A21946AF40080A314 /* Info.plist */,
 				E78A8E1221946AF20080A314 /* Stoic_Daily.xcdatamodeld */,
+				E7F030E82199DA0B00141992 /* DetailViewController.swift */,
 			);
 			path = "Stoic Daily";
 			sourceTree = "<group>";
@@ -146,9 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E78A8E0E21946AF20080A314 /* ViewController.swift in Sources */,
+				E78A8E0E21946AF20080A314 /* QuoteViewController.swift in Sources */,
 				E78A8E0C21946AF20080A314 /* AppDelegate.swift in Sources */,
 				E78A8E1421946AF20080A314 /* Stoic_Daily.xcdatamodeld in Sources */,
+				E7F030E92199DA0B00141992 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +299,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XSSQT6PCCU;
 				INFOPLIST_FILE = "Stoic Daily/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +318,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XSSQT6PCCU;
 				INFOPLIST_FILE = "Stoic Daily/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
