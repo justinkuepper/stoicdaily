@@ -34,8 +34,8 @@ class QuoteViewController: UIViewController {
         
         // Detect tap to show details.
         let tapAction = UITapGestureRecognizer()
-        quoteLabel.isUserInteractionEnabled = true
-        quoteLabel.addGestureRecognizer(tapAction)
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapAction)
         tapAction.addTarget(self, action: #selector(actionTapped(_:)))
         
         // Set date string.
@@ -48,6 +48,7 @@ class QuoteViewController: UIViewController {
     
     struct Quote: Decodable {
         var date: String
+        var title: String
         var quote: String
         var detail: String
     }
@@ -100,10 +101,25 @@ class QuoteViewController: UIViewController {
         }
     }
     
+    func getTitle(currentDate: String) -> String {
+        do {
+            let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
+            let decoder = JSONDecoder()
+            let data = try Data(contentsOf: db)
+            let quotes = try decoder.decode([Quote].self, from: data)
+            let quote = quotes.filter{ $0.date == currentDate }
+            return quote[0].title
+        } catch {
+            print(error)
+            return ""
+        }
+    }
+    
     // Handle the tap to show detail view.
     @objc func actionTapped(_ sender: UITapGestureRecognizer) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailView") as! DetailViewController
         vc.modalTransitionStyle = .flipHorizontal
+        vc.quoteTitle = getTitle(currentDate: getDate())
         vc.quoteDetails = getDetails(currentDate: getDate())
         self.present(vc, animated: true, completion: nil)
     }
