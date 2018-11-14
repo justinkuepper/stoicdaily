@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Request push notification access.
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Error authorizing notifications.")
+            }
+        }
+        
+        // Setup recurring notifications.
+        let content = UNMutableNotificationContent()
+        content.title = "Daily Stoic"
+        content.body = "It's time for your daily dose of wisdom."
+        content.sound = UNNotificationSound.default
+        var date = DateComponents()
+        date.hour = 8
+        date.minute = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        let identifier = "UYLLocalNotification"
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { (error) in
+            if error != nil {
+                print("Error scheduling notifications.")
+            }
+        })
         return true
     }
 
