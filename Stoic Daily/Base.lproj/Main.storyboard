@@ -44,9 +44,18 @@
                                 <rect key="frame" x="15" y="90" width="345" height="507"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e6-2m-2nV">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="507"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="456"/>
                                         <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="20"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attribution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTe-pq-y71">
+                                        <rect key="frame" x="0.0" y="456" width="345" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Afk-dC-bfv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -54,10 +63,12 @@
                                 <constraints>
                                     <constraint firstItem="4e6-2m-2nV" firstAttribute="leading" secondItem="uVi-EZ-OcA" secondAttribute="leading" id="1tD-Dn-PXE"/>
                                     <constraint firstItem="4e6-2m-2nV" firstAttribute="top" secondItem="uVi-EZ-OcA" secondAttribute="top" id="3Do-gL-96l"/>
+                                    <constraint firstItem="wTe-pq-y71" firstAttribute="leading" secondItem="uVi-EZ-OcA" secondAttribute="leading" id="8E8-pt-JG2"/>
                                     <constraint firstItem="4e6-2m-2nV" firstAttribute="centerX" secondItem="uVi-EZ-OcA" secondAttribute="centerX" id="JiB-8L-jWi"/>
-                                    <constraint firstItem="4e6-2m-2nV" firstAttribute="centerY" secondItem="uVi-EZ-OcA" secondAttribute="centerY" id="PIr-NX-slZ"/>
+                                    <constraint firstItem="wTe-pq-y71" firstAttribute="top" secondItem="4e6-2m-2nV" secondAttribute="bottom" id="a1E-wV-SrK"/>
+                                    <constraint firstAttribute="bottom" secondItem="wTe-pq-y71" secondAttribute="bottom" constant="30" id="bZw-3n-Dvj"/>
+                                    <constraint firstAttribute="trailing" secondItem="wTe-pq-y71" secondAttribute="trailing" id="isL-2d-PYP"/>
                                     <constraint firstAttribute="trailing" secondItem="4e6-2m-2nV" secondAttribute="trailing" id="leL-be-Bwj"/>
-                                    <constraint firstAttribute="bottom" secondItem="4e6-2m-2nV" secondAttribute="bottom" id="zQa-cE-i4W"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-3X-bc8" userLabel="Footer">
@@ -103,6 +114,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bylineLabel" destination="wTe-pq-y71" id="Rxp-Bc-ubB"/>
                         <outlet property="dateLabel" destination="K9C-zC-hB5" id="S0t-AX-vff"/>
                         <outlet property="quoteLabel" destination="4e6-2m-2nV" id="plp-dR-KdJ"/>
                     </connections>

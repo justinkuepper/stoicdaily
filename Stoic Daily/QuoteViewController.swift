@@ -13,6 +13,7 @@ class QuoteViewController: UIViewController {
 
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var bylineLabel: UILabel!
     
     @IBAction func shareQuote(_ sender: Any) {
         let quote = getQuote(currentDate: getDate())
@@ -31,7 +32,7 @@ class QuoteViewController: UIViewController {
         paragraphStyle.lineSpacing = 10
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
         quoteLabel.attributedText = attString
-        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 50)
+        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 40)
         
         // Detect tap to show details.
         let tapAction = UITapGestureRecognizer()
@@ -39,21 +40,25 @@ class QuoteViewController: UIViewController {
         self.view.addGestureRecognizer(tapAction)
         tapAction.addTarget(self, action: #selector(actionTapped(_:)))
         
-        // Set date string.
+        // Set date and byline strings.
         dateLabel.text = getDateString()
+        bylineLabel.text = getByline(currentDate: getDate())
         
         // Size the quote text to fit height.
         quoteLabel.resizeToFitHeight()
         
-        // Fade in the quote text.
+        // Fade in the quote and byline text.
         quoteLabel.alpha = 0
+        bylineLabel.alpha = 0
         quoteLabel.fadeIn()
+        bylineLabel.fadeIn()
     }
     
     struct Quote: Decodable {
         var date: String
         var title: String
         var quote: String
+        var byline: String
         var detail: String
     }
     
@@ -105,6 +110,22 @@ class QuoteViewController: UIViewController {
         }
     }
     
+    // Takes a string date and returns a byline string.
+    func getByline(currentDate: String) -> String {
+        do {
+            let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
+            let decoder = JSONDecoder()
+            let data = try Data(contentsOf: db)
+            let quotes = try decoder.decode([Quote].self, from: data)
+            let quote = quotes.filter{ $0.date == currentDate }
+            return quote[0].byline
+        } catch {
+            print(error)
+            return ""
+        }
+    }
+    
+    // Takes a string date and returns a title string.
     func getTitle(currentDate: String) -> String {
         do {
             let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
@@ -144,6 +165,7 @@ extension UIView {
     }
 }
 
+// Extension to resize font to fit height.
 extension UILabel {
     func resizeToFitHeight(){
         var currentfontSize = font.pointSize

@@ -1,14 +1,16 @@
 [
     {
-        "date": "11/14",
+        "date": "11/15",
         "title" : "Sample title",
         "quote": "This is a quote",
+        "byline": "Attribution of person.",
         "detail" : "asdf"
     },
     {
-        "date": "11/15",
+        "date": "11/16",
         "title" : "Sample title",
         "quote": "As you move forward along the path of reason, people will stand in your way. They will never be able to keep you from doing what's sound, so don't let them knock out your good will for them. Keep a steady watch on both fronts, not only for the well-based judgements and actions, but also for gentleness with those who would obstruct our path or create other difficulties. For getting angry is also a weakness, just as much as abandoning the task for surrendering under panic. For doing either is an equal desertion-the one by shrinking back and the other by estrangement from family and friend.",
+        "byline": "Marcus Aurelius, Meditations, 6.2",
         "detail": "This is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\nThis is a reflection about what the quote is talking about.\n\nComplete with some paragraphs of text.\n\n\n\n"
     }
 ]
