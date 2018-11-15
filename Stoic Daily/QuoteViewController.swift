@@ -32,7 +32,7 @@ class QuoteViewController: UIViewController {
         paragraphStyle.lineSpacing = 10
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
         quoteLabel.attributedText = attString
-        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 40)
+        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 30)
         
         // Detect tap to show details.
         let tapAction = UITapGestureRecognizer()
