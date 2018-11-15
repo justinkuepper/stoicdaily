@@ -31,7 +31,7 @@ class QuoteViewController: UIViewController {
         paragraphStyle.lineSpacing = 10
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
         quoteLabel.attributedText = attString
-        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 20)
+        quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 50)
         
         // Detect tap to show details.
         let tapAction = UITapGestureRecognizer()
@@ -41,6 +41,9 @@ class QuoteViewController: UIViewController {
         
         // Set date string.
         dateLabel.text = getDateString()
+        
+        // Size the quote text to fit height.
+        quoteLabel.resizeToFitHeight()
         
         // Fade in the quote text.
         quoteLabel.alpha = 0
@@ -138,5 +141,30 @@ extension UIView {
         UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.alpha = 0.0
         }, completion: completion)
+    }
+}
+
+extension UILabel {
+    func resizeToFitHeight(){
+        var currentfontSize = font.pointSize
+        let minFontsize = CGFloat(5)
+        let constrainedSize = CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude)
+        
+        while (currentfontSize >= minFontsize){
+            let newFont = font.withSize(currentfontSize)
+            let attributedText: NSAttributedString = NSAttributedString(string: text!, attributes: [NSAttributedString.Key.font: newFont])
+            let rect: CGRect = attributedText.boundingRect(with: constrainedSize, options: .usesLineFragmentOrigin, context: nil)
+            let size: CGSize = rect.size
+            
+            if (size.height < frame.height - 10) {
+                font = newFont
+                break;
+            }
+            currentfontSize = currentfontSize - 1
+        }
+        
+        if (currentfontSize == minFontsize){
+            font = font.withSize(currentfontSize)
+        }
     }
 }
