@@ -14,6 +14,7 @@ class QuoteViewController: UIViewController {
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bylineLabel: UILabel!
+    @IBOutlet weak var shareButton: UIButton!
     
     @IBAction func shareQuote(_ sender: Any) {
         let quote = getQuote(currentDate: getDate())
@@ -52,6 +53,11 @@ class QuoteViewController: UIViewController {
         bylineLabel.alpha = 0
         quoteLabel.fadeIn()
         bylineLabel.fadeIn()
+        
+        // Style quote button.
+        shareButton.layer.borderWidth = 0.8
+        shareButton.layer.borderColor = UIColor.lightGray.cgColor
+        shareButton.layer.cornerRadius = 5
     }
     
     struct Quote: Decodable {

@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var quoteDetailsLabel: UILabel!
     @IBOutlet weak var quoteTitleLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,11 @@ class DetailViewController: UIViewController {
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
         quoteDetailsLabel.attributedText = attString
         quoteDetailsLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 20)
+        
+        // Style save button.
+        saveButton.layer.borderWidth = 0.8
+        saveButton.layer.borderColor = UIColor.lightGray.cgColor
+        saveButton.layer.cornerRadius = 5
     }
     
     // Dismiss the quote details.
