@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import CoreData
 
 class QuoteViewController: UIViewController {
 
@@ -16,11 +17,23 @@ class QuoteViewController: UIViewController {
     @IBOutlet weak var bylineLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
     
+    struct Quote: Decodable {
+        var id: String
+        var date: String
+        var title: String
+        var quote: String
+        var byline: String
+        var detail: String
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set or retrieve the daily quote.
+        let quote = getQuote()
+        
         // Set styling for the quote text.
-        let attString = NSMutableAttributedString(string: getQuote(currentDate: getDate())!.quote)
+        let attString = NSMutableAttributedString(string: quote!.quote)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attString.length))
@@ -35,7 +48,7 @@ class QuoteViewController: UIViewController {
         
         // Set date and byline strings.
         dateButton.setTitle(getDateString(), for: .normal)
-        bylineLabel.text = getQuote(currentDate: getDate())!.byline
+        bylineLabel.text = quote!.byline
         
         // Size the quote text to fit height.
         quoteLabel.resizeToFitHeight()
@@ -51,14 +64,6 @@ class QuoteViewController: UIViewController {
         shareButton.layer.borderWidth = 0.8
         shareButton.layer.borderColor = UIColor.lightGray.cgColor
         shareButton.layer.cornerRadius = 5
-    }
-    
-    struct Quote: Decodable {
-        var date: String
-        var title: String
-        var quote: String
-        var byline: String
-        var detail: String
     }
     
     // Retrieves and formats the current date.
@@ -79,19 +84,54 @@ class QuoteViewController: UIViewController {
         return result
     }
     
-    // Takes string date and returns quote object.
-    func getQuote(currentDate: String) -> Quote? {
-        do {
-            let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
-            let decoder = JSONDecoder()
-            let data = try Data(contentsOf: db)
-            let quotes = try decoder.decode([Quote].self, from: data)
-            // Future: let quote = quotes.filter{ $0.date == currentDate }
-            let quote = quotes.randomElement()!
-            return quote
-        } catch {
-            print(error)
-            return nil
+    // Retrieves or sets a quote for the day.
+    // TODO: Update NSDate() to be a string comparison of just the date.
+    func getQuote() -> Quote? {
+        let currentDate = getDateString()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchQuote = NSFetchRequest<NSFetchRequestResult>(entityName: "Quotes")
+        fetchQuote.predicate = NSPredicate(format: "quoteDate == %@", currentDate)
+        fetchQuote.fetchLimit = 1
+        let existingQuotes = try! context.fetch(fetchQuote) as! [NSManagedObject]
+        print(existingQuotes)
+        
+        if existingQuotes.count > 0 {
+            print("there is already a quote")
+            do {
+                let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
+                let decoder = JSONDecoder()
+                let data = try Data(contentsOf: db)
+                let quotes = try decoder.decode([Quote].self, from: data)
+                let existingQuote = existingQuotes.first!.value(forKey: "quoteId") as! String
+                let quote = quotes.filter{ $0.id == existingQuote }
+                return quote[0]
+            } catch {
+                print(error)
+                return nil
+            }
+        } else {
+            print("there is no quote")
+            do {
+                let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
+                let decoder = JSONDecoder()
+                let data = try Data(contentsOf: db)
+                let quotes = try decoder.decode([Quote].self, from: data)
+                let quote = quotes.randomElement()!
+                let quoteEntity = NSEntityDescription.entity(forEntityName: "Quotes", in: context)!
+                let savedQuote = NSManagedObject(entity: quoteEntity, insertInto: context)
+                savedQuote.setValue(quote.id, forKey: "quoteId")
+                savedQuote.setValue(currentDate, forKey: "quoteDate")
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+                return quote
+            } catch {
+                print(error)
+                return nil
+            }
         }
     }
     
@@ -99,14 +139,14 @@ class QuoteViewController: UIViewController {
     @objc func actionTapped(_ sender: UITapGestureRecognizer) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailView") as! DetailViewController
         vc.modalTransitionStyle = .flipHorizontal
-        vc.quoteTitle = getQuote(currentDate: getDate())!.title
-        vc.quoteDetails = getQuote(currentDate: getDate())!.detail
+        vc.quoteTitle = getQuote()!.title
+        vc.quoteDetails = getQuote()!.detail
         self.present(vc, animated: true, completion: nil)
     }
     
     // Open dialog to share quote.
     @IBAction func shareQuote(_ sender: Any) {
-        let quote = getQuote(currentDate: getDate())
+        let quote = getQuote()
         let shareObject = [quote]
         let activityVC = UIActivityViewController(activityItems: shareObject as [Any], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sender as? UIView
