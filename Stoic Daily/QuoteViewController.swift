@@ -40,12 +40,6 @@ class QuoteViewController: UIViewController {
         quoteLabel.attributedText = attString
         quoteLabel.font = UIFont(name: "Hiragino Mincho ProN W3", size: 30)
         
-        // Detect tap to show details.
-        let tapAction = UITapGestureRecognizer()
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(tapAction)
-        tapAction.addTarget(self, action: #selector(actionTapped(_:)))
-        
         // Set date and byline strings.
         dateButton.setTitle(getDateString(), for: .normal)
         bylineLabel.text = quote!.byline
@@ -64,6 +58,12 @@ class QuoteViewController: UIViewController {
         shareButton.layer.borderWidth = 0.8
         shareButton.layer.borderColor = UIColor.lightGray.cgColor
         shareButton.layer.cornerRadius = 5
+        
+        // Detect tap to show details.
+        let tapAction = UITapGestureRecognizer()
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapAction)
+        tapAction.addTarget(self, action: #selector(actionTapped(_:)))
     }
     
     // Retrieves and formats the current date.
@@ -85,7 +85,6 @@ class QuoteViewController: UIViewController {
     }
     
     // Retrieves or sets a quote for the day.
-    // TODO: Update NSDate() to be a string comparison of just the date.
     func getQuote() -> Quote? {
         let currentDate = getDateString()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -97,7 +96,6 @@ class QuoteViewController: UIViewController {
         print(existingQuotes)
         
         if existingQuotes.count > 0 {
-            print("there is already a quote")
             do {
                 let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
                 let decoder = JSONDecoder()
@@ -111,8 +109,8 @@ class QuoteViewController: UIViewController {
                 return nil
             }
         } else {
-            print("there is no quote")
             do {
+                clearQuotes()
                 let db = Bundle.main.url(forResource: "quotes", withExtension: "json")!
                 let decoder = JSONDecoder()
                 let data = try Data(contentsOf: db)
@@ -135,6 +133,23 @@ class QuoteViewController: UIViewController {
         }
     }
     
+    // Clear all previous quotes to save space.
+    func clearQuotes() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Quotes")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                context.delete(data)
+            }
+        } catch {
+            print("Failed to delete data.")
+        }
+    }
+    
     // Handle the tap to show detail view.
     @objc func actionTapped(_ sender: UITapGestureRecognizer) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailView") as! DetailViewController
@@ -146,20 +161,15 @@ class QuoteViewController: UIViewController {
     
     // Open dialog to share quote.
     @IBAction func shareQuote(_ sender: Any) {
-        let quote = getQuote()
+        let quote = getQuote()!.title
         let shareObject = [quote]
         let activityVC = UIActivityViewController(activityItems: shareObject as [Any], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sender as? UIView
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    // Handle the tap to change the date and quote.
-    // This will be implemented when there's a quote for every date.
+    // This could eventually be used to change the date.
     @IBAction func changeDate(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let datePickerVC = storyboard.instantiateViewController(withIdentifier: "datePickerVC")
-        datePickerVC.modalPresentationStyle = .overCurrentContext
-        self.present(datePickerVC, animated: true, completion: nil)
     }
     
     // Change the title of the button and update quote.
