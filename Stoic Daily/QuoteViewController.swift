@@ -161,7 +161,7 @@ class QuoteViewController: UIViewController {
     
     // Open dialog to share quote.
     @IBAction func shareQuote(_ sender: Any) {
-        let quote = getQuote()!.title
+        let quote = getQuote()!.quote
         let shareObject = [quote]
         let activityVC = UIActivityViewController(activityItems: shareObject as [Any], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sender as? UIView
